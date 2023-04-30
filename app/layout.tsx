@@ -12,18 +12,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const header = (
-    <div>
+    <div className="text-center bg-slate-800 p-8 my-6 rounded-md">
       <Link href="/">
-        <h1>Grant's Blog</h1>
+        <h1 className="text-3xl font-bold text-white">Grant's Blog</h1>
       </Link>
-      <p>✌🏽 Welcome to my tech blog 💻</p>
+      <p className="text-slate-300">✌🏽 Welcome to my tech blog 💻</p>
     </div>
   );
 
   const footer = (
     <footer>
-      <div>
-        <br />
+      <div className="text-center border-t mt-6 py-6 border-slate-400 text-slate-400">
         <h3>Developed by Grant</h3>
       </div>
     </footer>
@@ -33,9 +32,11 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body>
-        {header}
-        {children}
-        {footer}
+        <div className="mx-auto max-w-2xl px-6">
+          {header}
+          {children}
+          {footer}
+        </div>
       </body>
     </html>
   );
