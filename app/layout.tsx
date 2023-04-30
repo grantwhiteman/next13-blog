@@ -1,4 +1,5 @@
 import "./globals.css";
+import Link from "next/link";
 
 export const metadata = {
   title: "Blog",
@@ -12,7 +13,9 @@ export default function RootLayout({
 }) {
   const header = (
     <div>
-      <h1>Grant's Blog</h1>
+      <Link href="/">
+        <h1>Grant's Blog</h1>
+      </Link>
       <p>✌🏽 Welcome to my tech blog 💻</p>
     </div>
   );

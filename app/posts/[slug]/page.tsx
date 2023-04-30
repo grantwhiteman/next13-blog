@@ -1,20 +1,35 @@
 import fs from "fs";
 import Markdown from "markdown-to-jsx";
+import matter from "gray-matter";
+import getPostMetaData from "@/components/getPostMetaData";
 
-const getPostContent = (slug) => {
+const getPostContent = (slug: string) => {
   const folder = "./posts";
   const file = `${folder}/${slug}.md`;
   const fileContent = fs.readFileSync(file, "utf8");
-  return fileContent;
+  const matterResult = matter(fileContent);
+
+  return matterResult;
 };
 
-const PostPage = ({ params }) => {
+interface PostPageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export const generateStaticParams = async () => {
+  const posts = getPostMetaData();
+  return posts.map((post) => post.slug);
+};
+
+const PostPage = ({ params }: PostPageProps) => {
   const { slug } = params;
-  const content = getPostContent(slug);
+  const post = getPostContent(slug);
   return (
     <div>
-      <h1>{slug}</h1>
-      <Markdown>{content}</Markdown>
+      <h1>{post.data.title}</h1>
+      <Markdown>{post.content}</Markdown>
     </div>
   );
 };
