@@ -20,7 +20,9 @@ interface PostPageProps {
 
 export const generateStaticParams = async () => {
   const posts = getPostMetaData();
-  return posts.map((post) => post.slug);
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
 };
 
 const PostPage = ({ params }: PostPageProps) => {
